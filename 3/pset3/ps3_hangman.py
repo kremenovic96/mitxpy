@@ -8,7 +8,7 @@
 # (so be sure to read the docstrings!)
 
 import random
-
+import string
 WORDLIST_FILENAME = "words.txt"
 
 def loadWords():
@@ -110,7 +110,29 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
-
+    print("Welcome to the game, Hangman!")
+    print("I am thinking of a word that is " + str(len(secretWord)) + " letters long.")
+    print("-------------")
+    lettersGuessed = []
+    print(secretWord)
+    #for round in range(8, -1, -1):
+    round = 8
+    while round > 0:        
+        print("You have " + str(round) + " guesses left" )
+        print("Available Letters: " + getAvailableLetters(lettersGuessed))
+        inp = input("Please guess a letter: ")
+        if inp in getAvailableLetters(lettersGuessed):
+            lettersGuessed.append(inp)
+            print("Good guess: " + getGuessedWord(secretWord, lettersGuessed))
+        else:
+            print("Oops! You've already guessed that letter: " + getGuessedWord(secretWord,lettersGuessed))
+            print("-------------")
+            round -= 1
+            if isWordGuessed(secretWord, lettersGuessed):
+                print("	Congratulations, you won!")
+                break
+            elif round == 0:
+                print("Sorry, you ran out of guesses. The word was " + secretWord)
 
 
 
@@ -120,5 +142,5 @@ def hangman(secretWord):
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+secretWord = chooseWord(wordlist).lower()
+hangman(secretWord)
