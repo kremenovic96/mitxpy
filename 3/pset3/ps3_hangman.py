@@ -120,21 +120,37 @@ def hangman(secretWord):
     while round > 0:        
         print("You have " + str(round) + " guesses left" )
         print("Available Letters: " + getAvailableLetters(lettersGuessed))
-        inp = input("Please guess a letter: ")
-        if inp in getAvailableLetters(lettersGuessed):
-            lettersGuessed.append(inp)
-            print("Good guess: " + getGuessedWord(secretWord, lettersGuessed))
-        else:
+        inp = input("Please guess a letter: ").lower()
+        
+        if inp not in getAvailableLetters(lettersGuessed):
             print("Oops! You've already guessed that letter: " + getGuessedWord(secretWord,lettersGuessed))
             print("-------------")
-            round -= 1
+        if inp in getAvailableLetters(lettersGuessed):
+            #print("-------------")
+            lettersGuessed.append(inp)
+            if inp in secretWord:
+                print("Good guess: " + getGuessedWord(secretWord, lettersGuessed))
             if isWordGuessed(secretWord, lettersGuessed):
-                print("	Congratulations, you won!")
+               # print("-------------")
+                print("Congratulations, you won!")
                 break
-            elif round == 0:
+            if inp not in secretWord:
+                round -= 1
+                print("Oops! That letter is not in my word: " + getGuessedWord(secretWord,lettersGuessed))
+            print("-------------")    
+       # else:
+       #     if inp not in getAvailableLetters(lettersGuessed):
+        #        print("Oops! You've already guessed that letter: " + getGuessedWord(secretWord,lettersGuessed))
+        #        print("-------------")
+            #else:
+            #    round -= 1
+            #    print("Oops! That letter is not in my word: " + getGuessedWord(secretWord,lettersGuessed))
+            
+                
+        if round == 0:
                 print("Sorry, you ran out of guesses. The word was " + secretWord)
 
-
+        #print("-------------")
 
 
 
