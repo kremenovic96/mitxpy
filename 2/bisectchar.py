@@ -5,14 +5,21 @@ def isIn(char, aStr):
     
     returns: True if char is in aStr; False otherwise
     '''
-    if len(aStr) == 0:
+    # Your code here
+   
+    if aStr == '':
         return False
     if len(aStr) == 1:
-        if char == aStr:
-            return True
-    elif char < aStr[round(len(aStr)/2)-1]:
-        return isIn(char, aStr[0:round(len(aStr)/2)-1])
-    elif char > aStr[round(len(aStr)/2)-1]:
-        return isIn(char, aStr[round(len(aStr)/2)-1:round(len(aStr)-1)])
-        
-        
+        return char == aStr
+   # if char == aStr[len(aStr) // 2]:
+    #    return True
+    if char < aStr[len(aStr) // 2]:
+        return isIn(char,aStr[:len(aStr) // 2])
+    if char > aStr[len(aStr) // 2]:
+        return isIn(char,aStr[len(aStr) // 2 + 1:])
+            
+    if char == aStr[len(aStr) // 2]:
+        return True       
+
+print(isIn('w', 'dgkntw'))
+print(isIn('f', 'dhjksuwxy'))       
