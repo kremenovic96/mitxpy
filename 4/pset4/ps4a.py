@@ -287,19 +287,49 @@ def playGame(wordList):
       * If the user inputs 'r', let the user play the last hand again.
       * If the user inputs 'e', exit the game.
       * If the user inputs anything else, tell them their input was invalid.
- 
+      
     2) When done playing the hand, repeat from step 1    
     """
+    inp = None
+    hand = None
+    while not inp == 'e':
+        inp = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if inp == 'n':
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+            inp = None
+        elif inp == 'r':
+            if hand == None:
+                print("You have not played a hand yet. Please play a new hand first!")
+                #print()
+                #inp = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+            
+            else:
+                #print("SSASSFASFASFASF")
+                playHand(hand, wordList, HAND_SIZE)
+                inp = None
+        elif inp == 'e':
+            break
+       # elif inp == None:
+       #     # nothing he-he
+        #    x = 1
+        else:
+            print("Invalid command. ")
+            #inp = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        print()    
+            
     # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
+    #print("playGame not yet implemented.") # <-- Remove this line when you code the function
  ### BELOW IS TEST AND IT IS ADDED BY ME  
-wordList = loadWords()
-playHand({'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}, wordList, 7)
+#wordList = loadWords()
+#playHand({'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}, wordList, 7)
 ### ABOVE IS TEST
-
+wrds = loadWords() 
+playGame(wrds)           
+#playGame(WORDLIST_FILENAME)
 #
 # Build data structures used for entire session and play game
 #
-if __name__ == '__main__':
-    wordList = loadWords()
-    playGame(wordList)
+#if __name__ == '__main__':
+   # wordList = loadWords()
+  #  playGame(wordList)
