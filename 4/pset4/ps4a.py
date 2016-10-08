@@ -324,8 +324,8 @@ def playGame(wordList):
 #wordList = loadWords()
 #playHand({'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}, wordList, 7)
 ### ABOVE IS TEST
-wrds = loadWords() 
-playGame(wrds)           
+#aaa wrds = loadWords() 
+#aaa playGame(wrds)           
 #playGame(WORDLIST_FILENAME)
 #
 # Build data structures used for entire session and play game

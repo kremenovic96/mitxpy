@@ -95,7 +95,6 @@ def compPlayHand(hand, wordList, n):
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
     print('Total score: ' + str(totalScore) + ' points.')
 
-    
 #
 # Problem #6: Playing a game
 #
@@ -103,7 +102,7 @@ def compPlayHand(hand, wordList, n):
 def playGame(wordList):
     """
     Allow the user to play an arbitrary number of hands.
- 
+    
     1) Asks the user to input 'n' or 'r' or 'e'.
         * If the user inputs 'e', immediately exit the game.
         * If the user inputs anything that's not 'n', 'r', or 'e', keep asking them again.
@@ -124,11 +123,44 @@ def playGame(wordList):
 
     wordList: list (string)
     """
+    hand = None
+    inp = None
+    cu = None
+    while not inp == 'e':
+        inp = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if inp == 'n':
+            hand = dealHand(HAND_SIZE)                
+            cu = input("Enter u to have yourself play, c to have the computer play: ")
+            if cu == 'u':
+                playHand(hand, wordList, HAND_SIZE)
+                #inp = None
+            elif cu =='c':
+                compPlayHand(hand, wordList, HAND_SIZE)
+            else:
+                print("Invalid command")
+            inp = None    
+        elif inp == 'r':
+            if hand == None:
+                print("You have not played a hand yet. Please play a new hand first!")
+            else:
+                cu = input("Enter u to have yourself play, c to have the computer play: ")
+                if cu == 'u':
+                    playHand(hand, wordList, HAND_SIZE)
+                elif cu == 'c':
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                else:
+                    print("Invalid command")
+                inp = None
+        elif inp == 'e':
+            break
+        else:
+            print("Invalid command. ")
+            print()                
     # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    #print("playGame not yet implemented.") # <-- Remove this when you code this function
+    #compPlayHand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, wordList, 6)    
 
-        
-#
+#   
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
